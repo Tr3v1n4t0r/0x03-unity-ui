@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public int health = 5;
     
     public Text scoreText;
+    public Text healthText;
 
     private Rigidbody Rb3D;
     private int score;
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case "Trap":
                 health--;
-                Debug.Log($"Health: {health}");
+                SetHealthText();
                 break;
             case "Goal":
                 Debug.Log("You win!");
@@ -71,5 +72,10 @@ public class PlayerController : MonoBehaviour
     void SetScoreText()
     {
         scoreText.text = $"Score: {score}";
+    }
+
+    void SetHealthText()
+    {
+        healthText.text = $"Health: {health}";
     }
 }
