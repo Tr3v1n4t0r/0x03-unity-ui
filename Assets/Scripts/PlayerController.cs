@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 750f;
     public int health = 5;
+    public int resetTime = 3;
     
     public Text scoreText;
     public Text healthText;
@@ -44,10 +45,8 @@ public class PlayerController : MonoBehaviour
     {
         if (health == 0)
         {
-            Debug.Log("Game Over!");
-            health = 5;
-            score = 0;
-            SceneManager.LoadScene("maze");
+            Lose();
+            StartCoroutine(LoadScene(resetTime));
         }
     }
 
@@ -89,5 +88,24 @@ public class PlayerController : MonoBehaviour
         winloseText.color = Color.black;
         parentImage.color = Color.green;
         parent.SetActive(true);
+    }
+
+    void Lose()
+    {
+        GameObject parent = winloseText.transform.parent.gameObject;
+        Image parentImage = parent.GetComponent<Image>();
+
+        winloseText.text = "Game Over!";
+        winloseText.color = Color.white;
+        parentImage.color = Color.red;
+        parent.SetActive(true);
+    }
+
+    IEnumerator LoadScene(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        health = 5;
+        score = 0;
+        SceneManager.LoadScene("maze");
     }
 }
