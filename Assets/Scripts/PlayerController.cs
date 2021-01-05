@@ -29,6 +29,11 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         HealthCheck();
+
+        if (Input.GetButton("Cancel"))
+        {
+            SceneManager.LoadScene("menu");
+        }
     }
 
     private void Move()
