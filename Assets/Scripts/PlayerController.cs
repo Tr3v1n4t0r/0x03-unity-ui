@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case "Goal":
                 Win();
+                StartCoroutine(LoadScene(resetTime));
                 break;
         }
     }
